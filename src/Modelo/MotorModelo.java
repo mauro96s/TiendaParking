@@ -1,17 +1,17 @@
-package tiendaparking;
+package Modelo;
 
 public class MotorModelo {
-    
-    private String numero_serie_motor = " ";
-    private String cilindraje_motor = " ";
-    private String combustible_motor = " ";
+
+    String numero_serie_motor = "";
+    String cilindraje_motor = "";
+    String combustible_motor = "";
 
     public MotorModelo(String dato_numero_serie, String dato_cilindraje, String dato_combustible) {
         this.numero_serie_motor = dato_numero_serie;
         this.cilindraje_motor = dato_cilindraje;
         this.combustible_motor = dato_combustible;
     }
-    
+
     public String getNumero_serie_motor() {
         return numero_serie_motor;
     }
@@ -34,5 +34,9 @@ public class MotorModelo {
 
     public void setCombustible_motor(String combustible_motor) {
         this.combustible_motor = combustible_motor;
+    }
+    
+    public void buscar_motor(String info_numero_serie){
+        System.out.println("Buscando motor...");
     }
 }

@@ -1,10 +1,11 @@
-package tiendaparking;
+package Modelo;
 
 public class ChoferModelo {
+
     // inicializamos variables
-    String nombre_chofer = " ";
-    String apellido_chofer = " ";
-    String cedula_chofer = " ";
+    String nombre_chofer = "";
+    String apellido_chofer = "";
+    String cedula_chofer = "";
 
     // constructor
     public ChoferModelo(String dato_nombre, String dato_apellido, String dato_cedula) {
@@ -36,5 +37,9 @@ public class ChoferModelo {
 
     public void setCedula_chofer(String cedula_chofer) {
         this.cedula_chofer = cedula_chofer;
+    }
+    
+    public void buscar_chofer (String info_cedula){
+        System.out.println("Buscando chofer...");
     }
 }
