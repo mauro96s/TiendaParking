@@ -20,7 +20,7 @@ public class GeneralController {
 
         // ciclo while que se repite si falla CUALQUIERA de las validaciones
         while (!obj_chofer.nombre_valido() || !obj_chofer.licencia_valida() || !obj_chofer.cedula_valida()) {
-            System.out.println("Error: Faltan datos obligatorios. Por favor, complete la informacion.");
+            this.vista.mostrar_mensaje("Error: Faltan datos obligatorios. Por favor, complete la informacion.");
 
             if (!obj_chofer.nombre_valido()) {
                 nombre = this.vista.tomar_nombre();
@@ -38,6 +38,6 @@ public class GeneralController {
             }
         }
 
-        System.out.println("Datos procesados correctamente...");
+        this.vista.mostrar_mensaje("Datos procesados correctamente...");
     }
 }

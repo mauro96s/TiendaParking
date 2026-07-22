@@ -23,4 +23,8 @@ public class ChoferVista {
         String cedula = obj_teclado.nextLine();
         return cedula;
     }
+
+    public void mostrar_mensaje(String mensaje) {
+        System.out.println(mensaje);
+    }
 }
