@@ -26,7 +26,21 @@ public class PasajeroModelo {
         this.nombre_pasajero = nombre_pasajero;
     }
     
-    public void buscar_pasajero (String info_cedula){
-        System.out.println("Buscando pasajero...");
+    public String buscar_pasajero (String info_cedula){
+        return "Buscando pasajero con cedula " + info_cedula + "...";
+    }
+
+    public boolean cedula_valida() {
+        if (this.cedula_pasajero != null && !this.cedula_pasajero.trim().isEmpty()) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean nombre_valido() {
+        if (this.nombre_pasajero != null && !this.nombre_pasajero.trim().isEmpty()) {
+            return true;
+        }
+        return false;
     }
 }

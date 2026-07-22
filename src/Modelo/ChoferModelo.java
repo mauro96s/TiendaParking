@@ -39,8 +39,8 @@ public class ChoferModelo {
         this.cedula_chofer = cedula_chofer;
     }
 
-    public void buscar_chofer(String info_cedula) {
-        System.out.println("Buscando chofer...");
+    public String buscar_chofer(String info_cedula) {
+        return "Buscando chofer con cedula " + info_cedula + "...";
     }
 
     // metodos de responsabilidad
@@ -49,23 +49,23 @@ public class ChoferModelo {
     // 1. la cedula sea valida
     // 2. validar licencia
     // 3. validar nombre y apellidos
-    
+
     public boolean nombre_valido() {
-        if (!this.nombre_chofer.trim().isEmpty()) {
+        if (this.nombre_chofer != null && !this.nombre_chofer.trim().isEmpty()) {
             return true;
         }
         return false;
     }
 
     public boolean licencia_valida() {
-        if (!this.licencia_chofer.isEmpty()) {
+        if (this.licencia_chofer != null && !this.licencia_chofer.trim().isEmpty()) {
             return true;
         }
         return false;
     }
 
     public boolean cedula_valida() {
-        if (!this.cedula_chofer.isEmpty()) {
+        if (this.cedula_chofer != null && !this.cedula_chofer.trim().isEmpty()) {
             return true;
         }
         return false;

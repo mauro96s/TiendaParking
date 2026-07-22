@@ -59,7 +59,28 @@ public class CarroModelo {
         this.chofer_carro = chofer_carro;
     }
 
-    public void buscar_placa(String info_placa) {
-        System.out.println("Buscando placa...");
+    public String buscar_placa(String info_placa) {
+        return "Buscando carro con placa " + info_placa + "...";
+    }
+
+    public boolean placa_valida() {
+        if (this.placa_carro != null && !this.placa_carro.trim().isEmpty()) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean marca_valida() {
+        if (this.marca_carro != null && !this.marca_carro.trim().isEmpty()) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean modelo_valido() {
+        if (this.modelo_carro != null && !this.modelo_carro.trim().isEmpty()) {
+            return true;
+        }
+        return false;
     }
 }

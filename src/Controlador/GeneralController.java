@@ -18,20 +18,26 @@ public class GeneralController {
 
         ChoferModelo obj_chofer = new ChoferModelo(nombre, licencia, cedula);
 
-        if (!obj_chofer.nombre_valido()) {
-            System.out.println("Falta Nombre");
-            nombre = this.vista.tomar_nombre();
-            obj_chofer.setNombre_chofer(nombre);
-        } else if (!obj_chofer.licencia_valida()) {
-            System.out.println("Falta Licencia");
-            licencia = this.vista.tomar_licencia();
-            obj_chofer.setLicencia_chofer(licencia);
-        } else if (!obj_chofer.cedula_valida()) {
-            System.out.println("Falta Cedula");
-            cedula = this.vista.tomar_cedula();
-            obj_chofer.setCedula_chofer(cedula);
-        } else {
-            System.out.println("Datos procesados...");
+        // ciclo while que se repite si falla CUALQUIERA de las validaciones
+        while (!obj_chofer.nombre_valido() || !obj_chofer.licencia_valida() || !obj_chofer.cedula_valida()) {
+            System.out.println("Error: Faltan datos obligatorios. Por favor, complete la informacion.");
+
+            if (!obj_chofer.nombre_valido()) {
+                nombre = this.vista.tomar_nombre();
+                obj_chofer.setNombre_chofer(nombre);
+            }
+
+            if (!obj_chofer.licencia_valida()) {
+                licencia = this.vista.tomar_licencia();
+                obj_chofer.setLicencia_chofer(licencia);
+            }
+
+            if (!obj_chofer.cedula_valida()) {
+                cedula = this.vista.tomar_cedula();
+                obj_chofer.setCedula_chofer(cedula);
+            }
         }
+
+        System.out.println("Datos procesados correctamente...");
     }
 }
