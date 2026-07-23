@@ -52,5 +52,11 @@ public class ApiModelo {
         return "Cliente se esta buscando...";
     }
     
-    
+    public boolean validar_registro(FichaViajeModelo ficha) {
+        if (ficha != null && ficha.getCarro() != null && ficha.getMotor() != null && 
+            ficha.getChofer() != null && ficha.getPasajero() != null) {
+            return true;
+        }
+        return false;
+    }
 }

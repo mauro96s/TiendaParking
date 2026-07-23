@@ -23,4 +23,8 @@ public class CarroVista {
         String modelo = obj_teclado.nextLine();
         return modelo;
     }
+
+    public void mostrar_mensaje(String mensaje) {
+        System.out.println(mensaje);
+    }
 }

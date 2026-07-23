@@ -6,17 +6,10 @@ public class CarroModelo {
     String marca_carro = "";
     String modelo_carro = "";
 
-    // Relaciones POO
-    private MotorModelo motor_carro;
-    private ChoferModelo chofer_carro;
-
-    public CarroModelo(String dato_placa, String dato_marca, String dato_modelo,
-            MotorModelo dato_motor, ChoferModelo dato_chofer) {
+    public CarroModelo(String dato_placa, String dato_marca, String dato_modelo) {
         this.placa_carro = dato_placa;
         this.marca_carro = dato_marca;
         this.modelo_carro = dato_modelo;
-        this.motor_carro = dato_motor;
-        this.chofer_carro = dato_chofer;
     }
 
     public String getPlaca_carro() {
@@ -41,22 +34,6 @@ public class CarroModelo {
 
     public void setModelo_carro(String modelo_carro) {
         this.modelo_carro = modelo_carro;
-    }
-
-    public MotorModelo getMotor_carro() {
-        return motor_carro;
-    }
-
-    public void setMotor_carro(MotorModelo motor_carro) {
-        this.motor_carro = motor_carro;
-    }
-
-    public ChoferModelo getChofer_carro() {
-        return chofer_carro;
-    }
-
-    public void setChofer_carro(ChoferModelo chofer_carro) {
-        this.chofer_carro = chofer_carro;
     }
 
     public String buscar_placa(String info_placa) {

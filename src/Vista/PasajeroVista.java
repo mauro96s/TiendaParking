@@ -17,4 +17,8 @@ public class PasajeroVista {
         String nombre = obj_teclado.nextLine();
         return nombre;
     }
+
+    public void mostrar_mensaje(String mensaje) {
+        System.out.println(mensaje);
+    }
 }

@@ -17,4 +17,8 @@ public class MotorVista {
         String tipo = obj_teclado.nextLine();
         return tipo;
     }
+
+    public void mostrar_mensaje(String mensaje) {
+        System.out.println(mensaje);
+    }
 }
