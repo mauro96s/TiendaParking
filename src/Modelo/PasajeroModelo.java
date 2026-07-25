@@ -32,14 +32,18 @@ public class PasajeroModelo {
 
     public boolean cedula_valida() {
         if (this.cedula_pasajero != null && !this.cedula_pasajero.trim().isEmpty()) {
-            return true;
+            if (this.cedula_pasajero.matches("[0-9]+") && this.cedula_pasajero.length() == 10) {
+                return true;
+            }
         }
         return false;
     }
 
     public boolean nombre_valido() {
         if (this.nombre_pasajero != null && !this.nombre_pasajero.trim().isEmpty()) {
-            return true;
+            if (this.nombre_pasajero.matches("[a-zA-Z áéíóúÁÉÍÓÚñÑ]+")) {
+                return true;
+            }
         }
         return false;
     }

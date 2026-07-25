@@ -32,14 +32,18 @@ public class MotorModelo {
 
     public boolean numero_serie_valido() {
         if (this.numero_serie_motor != null && !this.numero_serie_motor.trim().isEmpty()) {
-            return true;
+            if (this.numero_serie_motor.trim().length() >= 3) {
+                return true;
+            }
         }
         return false;
     }
 
     public boolean tipo_valido() {
         if (this.tipo_motor != null && !this.tipo_motor.trim().isEmpty()) {
-            return true;
+            if (this.tipo_motor.trim().length() >= 3) {
+                return true;
+            }
         }
         return false;
     }

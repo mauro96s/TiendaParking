@@ -52,21 +52,27 @@ public class ChoferModelo {
 
     public boolean nombre_valido() {
         if (this.nombre_chofer != null && !this.nombre_chofer.trim().isEmpty()) {
-            return true;
+            if (this.nombre_chofer.matches("[a-zA-Z áéíóúÁÉÍÓÚñÑ]+")) {
+                return true;
+            }
         }
         return false;
     }
 
     public boolean licencia_valida() {
         if (this.licencia_chofer != null && !this.licencia_chofer.trim().isEmpty()) {
-            return true;
+            if (this.licencia_chofer.length() >= 3) {
+                return true;
+            }
         }
         return false;
     }
 
     public boolean cedula_valida() {
         if (this.cedula_chofer != null && !this.cedula_chofer.trim().isEmpty()) {
-            return true;
+            if (this.cedula_chofer.matches("[0-9]+") && this.cedula_chofer.length() == 10) {
+                return true;
+            }
         }
         return false;
     }

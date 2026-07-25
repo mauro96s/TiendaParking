@@ -42,21 +42,27 @@ public class CarroModelo {
 
     public boolean placa_valida() {
         if (this.placa_carro != null && !this.placa_carro.trim().isEmpty()) {
-            return true;
+            if (this.placa_carro.matches("[A-Z]{3}-[0-9]{3,4}")) {
+                return true;
+            }
         }
         return false;
     }
 
     public boolean marca_valida() {
         if (this.marca_carro != null && !this.marca_carro.trim().isEmpty()) {
-            return true;
+            if (this.marca_carro.trim().length() >= 3) {
+                return true;
+            }
         }
         return false;
     }
 
     public boolean modelo_valido() {
         if (this.modelo_carro != null && !this.modelo_carro.trim().isEmpty()) {
-            return true;
+            if (this.modelo_carro.trim().length() >= 2) {
+                return true;
+            }
         }
         return false;
     }
