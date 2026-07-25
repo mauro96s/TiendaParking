@@ -25,26 +25,31 @@ public class PasajeroModelo {
     public void setNombre_pasajero(String nombre_pasajero) {
         this.nombre_pasajero = nombre_pasajero;
     }
-    
-    public String buscar_pasajero (String info_cedula){
-        return "Buscando pasajero con cedula " + info_cedula + "...";
+
+    public String validar_cedula() {
+        if (this.cedula_pasajero == null || this.cedula_pasajero.trim().isEmpty()) {
+            return "-> La cedula no puede estar vacia.";
+        }
+        if (!this.cedula_pasajero.matches("[0-9]+")) {
+            return "-> La cedula solo debe contener numeros.";
+        }
+        if (this.cedula_pasajero.length() < 8 || this.cedula_pasajero.length() > 10) {
+            return "-> La cedula debe tener entre 8 y 10 digitos.";
+        }
+        return "OK";
     }
 
-    public boolean cedula_valida() {
-        if (this.cedula_pasajero != null && !this.cedula_pasajero.trim().isEmpty()) {
-            if (this.cedula_pasajero.matches("[0-9]+") && this.cedula_pasajero.length() == 10) {
-                return true;
-            }
+    public String validar_nombre() {
+        if (this.nombre_pasajero == null || this.nombre_pasajero.trim().isEmpty()) {
+            return "-> El nombre no puede estar vacio.";
         }
-        return false;
+        if (!this.nombre_pasajero.matches("[a-zA-Z áéíóúÁÉÍÓÚñÑ]+")) {
+            return "-> El nombre solo puede contener letras y espacios.";
+        }
+        return "OK";
     }
 
-    public boolean nombre_valido() {
-        if (this.nombre_pasajero != null && !this.nombre_pasajero.trim().isEmpty()) {
-            if (this.nombre_pasajero.matches("[a-zA-Z áéíóúÁÉÍÓÚñÑ]+")) {
-                return true;
-            }
-        }
-        return false;
+    public String obtener_info() {
+        return "PASAJERO -> Nombre: " + this.nombre_pasajero + " | CI: " + this.cedula_pasajero;
     }
 }

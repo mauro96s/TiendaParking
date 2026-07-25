@@ -7,13 +7,13 @@ public class MotorVista {
     private Scanner obj_teclado = new Scanner(System.in);
 
     public String tomar_numero_serie(){
-        System.out.print("Numero de serie del motor: ");
+        System.out.print("Serie: ");
         String numero = obj_teclado.nextLine();
         return numero;
     }
     
     public String tomar_tipo(){
-        System.out.print("Tipo de motor: ");
+        System.out.print("Tipo: ");
         String tipo = obj_teclado.nextLine();
         return tipo;
     }

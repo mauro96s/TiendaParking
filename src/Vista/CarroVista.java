@@ -7,19 +7,19 @@ public class CarroVista {
     private Scanner obj_teclado = new Scanner(System.in);
 
     public String tomar_placa(){
-        System.out.print("Placa del carro: ");
+        System.out.print("Placa: ");
         String placa = obj_teclado.nextLine();
         return placa;
     }
     
     public String tomar_marca(){
-        System.out.print("Marca del carro: ");
+        System.out.print("Marca: ");
         String marca = obj_teclado.nextLine();
         return marca;
     }
     
     public String tomar_modelo(){
-        System.out.print("Modelo del carro: ");
+        System.out.print("Modelo: ");
         String modelo = obj_teclado.nextLine();
         return modelo;
     }

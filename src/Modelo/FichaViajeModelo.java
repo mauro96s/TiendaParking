@@ -45,4 +45,13 @@ public class FichaViajeModelo {
     public void setPasajero(PasajeroModelo pasajero) {
         this.pasajero = pasajero;
     }
+
+    public String obtener_info() {
+        return "\n--- RESUMEN FINAL DEL VIAJE ---\n" +
+               this.carro.obtener_info() + "\n" +
+               this.motor.obtener_info() + "\n" +
+               this.chofer.obtener_info() + "\n" +
+               this.pasajero.obtener_info() + "\n" +
+               "-------------------------------";
+    }
 }

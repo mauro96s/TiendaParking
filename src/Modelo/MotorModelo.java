@@ -26,25 +26,27 @@ public class MotorModelo {
         this.tipo_motor = tipo_motor;
     }
 
-    public String buscar_motor(String info_numero_serie){
-        return "Buscando motor con serie " + info_numero_serie + "...";
+    public String validar_numero_serie() {
+        if (this.numero_serie_motor == null || this.numero_serie_motor.trim().isEmpty()) {
+            return "-> El numero de serie no puede estar vacio.";
+        }
+        if (this.numero_serie_motor.trim().length() < 3) {
+            return "-> El numero de serie debe tener al menos 3 caracteres.";
+        }
+        return "OK";
     }
 
-    public boolean numero_serie_valido() {
-        if (this.numero_serie_motor != null && !this.numero_serie_motor.trim().isEmpty()) {
-            if (this.numero_serie_motor.trim().length() >= 3) {
-                return true;
-            }
+    public String validar_tipo() {
+        if (this.tipo_motor == null || this.tipo_motor.trim().isEmpty()) {
+            return "-> El tipo de motor no puede estar vacio.";
         }
-        return false;
+        if (this.tipo_motor.trim().length() < 3) {
+            return "-> El tipo de motor debe tener al menos 3 caracteres.";
+        }
+        return "OK";
     }
 
-    public boolean tipo_valido() {
-        if (this.tipo_motor != null && !this.tipo_motor.trim().isEmpty()) {
-            if (this.tipo_motor.trim().length() >= 3) {
-                return true;
-            }
-        }
-        return false;
+    public String obtener_info() {
+        return "MOTOR -> Serie: " + this.numero_serie_motor + " | Tipo: " + this.tipo_motor;
     }
 }

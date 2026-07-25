@@ -36,34 +36,37 @@ public class CarroModelo {
         this.modelo_carro = modelo_carro;
     }
 
-    public String buscar_placa(String info_placa) {
-        return "Buscando carro con placa " + info_placa + "...";
+    public String validar_placa() {
+        if (this.placa_carro == null || this.placa_carro.trim().isEmpty()) {
+            return "-> La placa no puede estar vacia.";
+        }
+        if (!this.placa_carro.matches("[A-Z]{3}-[0-9]{3,4}")) {
+            return "-> La placa debe tener el formato (Ej: ABC-1234).";
+        }
+        return "OK";
     }
 
-    public boolean placa_valida() {
-        if (this.placa_carro != null && !this.placa_carro.trim().isEmpty()) {
-            if (this.placa_carro.matches("[A-Z]{3}-[0-9]{3,4}")) {
-                return true;
-            }
+    public String validar_marca() {
+        if (this.marca_carro == null || this.marca_carro.trim().isEmpty()) {
+            return "-> La marca no puede estar vacia.";
         }
-        return false;
+        if (this.marca_carro.trim().length() < 3) {
+            return "-> La marca debe tener al menos 3 caracteres.";
+        }
+        return "OK";
     }
 
-    public boolean marca_valida() {
-        if (this.marca_carro != null && !this.marca_carro.trim().isEmpty()) {
-            if (this.marca_carro.trim().length() >= 3) {
-                return true;
-            }
+    public String validar_modelo() {
+        if (this.modelo_carro == null || this.modelo_carro.trim().isEmpty()) {
+            return "-> El modelo no puede estar vacio.";
         }
-        return false;
+        if (this.modelo_carro.trim().length() < 2) {
+            return "-> El modelo debe tener al menos 2 caracteres.";
+        }
+        return "OK";
     }
 
-    public boolean modelo_valido() {
-        if (this.modelo_carro != null && !this.modelo_carro.trim().isEmpty()) {
-            if (this.modelo_carro.trim().length() >= 2) {
-                return true;
-            }
-        }
-        return false;
+    public String obtener_info() {
+        return "CARRO -> Placa: " + this.placa_carro + " | Marca: " + this.marca_carro + " | Modelo: " + this.modelo_carro;
     }
 }
