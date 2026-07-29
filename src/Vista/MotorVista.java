@@ -18,6 +18,12 @@ public class MotorVista {
         return tipo;
     }
 
+    public String tomar_cilindraje(){
+        System.out.print("Cilindraje: ");
+        String cilindraje = obj_teclado.nextLine();
+        return cilindraje;
+    }
+
     public void mostrar_mensaje(String mensaje) {
         System.out.println(mensaje);
     }

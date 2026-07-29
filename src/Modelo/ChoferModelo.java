@@ -80,6 +80,6 @@ public class ChoferModelo {
     }
 
     public String obtener_info() {
-        return "CHOFER -> CI: " + this.cedula_chofer + " | Nombre: " + this.nombre_chofer + " | Licencia: " + this.licencia_chofer;
+        return "[CHOFER] CI: " + this.cedula_chofer + " | Nombre: " + this.nombre_chofer + " | Licencia: " + this.licencia_chofer;
     }
 }

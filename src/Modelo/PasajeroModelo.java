@@ -50,6 +50,6 @@ public class PasajeroModelo {
     }
 
     public String obtener_info() {
-        return "PASAJERO -> Nombre: " + this.nombre_pasajero + " | CI: " + this.cedula_pasajero;
+        return "[PASAJERO] Nombre: " + this.nombre_pasajero + " | CI: " + this.cedula_pasajero;
     }
 }

@@ -4,10 +4,12 @@ public class MotorModelo {
 
     String numero_serie_motor = "";
     String tipo_motor = "";
+    String cilindraje = "";
 
-    public MotorModelo(String dato_numero_serie, String dato_tipo) {
+    public MotorModelo(String dato_numero_serie, String dato_tipo, String dato_cilindraje) {
         this.numero_serie_motor = dato_numero_serie;
         this.tipo_motor = dato_tipo;
+        this.cilindraje = dato_cilindraje;
     }
 
     public String getNumero_serie_motor() {
@@ -24,6 +26,14 @@ public class MotorModelo {
 
     public void setTipo_motor(String tipo_motor) {
         this.tipo_motor = tipo_motor;
+    }
+
+    public String getCilindraje() {
+        return cilindraje;
+    }
+
+    public void setCilindraje(String cilindraje) {
+        this.cilindraje = cilindraje;
     }
 
     public String validar_numero_serie() {
@@ -46,7 +56,17 @@ public class MotorModelo {
         return "OK";
     }
 
+    public String validar_cilindraje() {
+        if (this.cilindraje == null || this.cilindraje.trim().isEmpty()) {
+            return "-> El cilindraje no puede estar vacio.";
+        }
+        if (this.cilindraje.trim().length() < 2) {
+            return "-> El cilindraje debe tener al menos 2 caracteres.";
+        }
+        return "OK";
+    }
+
     public String obtener_info() {
-        return "MOTOR -> Serie: " + this.numero_serie_motor + " | Tipo: " + this.tipo_motor;
+        return "[MOTOR] Serie: " + this.numero_serie_motor + " | Tipo: " + this.tipo_motor + " | Cilindraje: " + this.cilindraje;
     }
 }
