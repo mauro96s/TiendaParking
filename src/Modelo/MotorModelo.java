@@ -67,6 +67,6 @@ public class MotorModelo {
     }
 
     public String obtener_info() {
-        return "[MOTOR] Serie: " + this.numero_serie_motor + " | Tipo: " + this.tipo_motor + " | Cilindraje: " + this.cilindraje;
+        return "Serie: " + this.numero_serie_motor + " | Tipo: " + this.tipo_motor + " | Cilindraje: " + this.cilindraje;
     }
 }

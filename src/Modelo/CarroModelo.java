@@ -5,13 +5,11 @@ public class CarroModelo {
     String placa_carro = "";
     String marca_carro = "";
     String modelo_carro = "";
-    MotorModelo motor_asignado;
 
-    public CarroModelo(String dato_placa, String dato_marca, String dato_modelo, MotorModelo motor) {
+    public CarroModelo(String dato_placa, String dato_marca, String dato_modelo) {
         this.placa_carro = dato_placa;
         this.marca_carro = dato_marca;
         this.modelo_carro = dato_modelo;
-        this.motor_asignado = motor;
     }
 
     public String getPlaca_carro() {
@@ -36,14 +34,6 @@ public class CarroModelo {
 
     public void setModelo_carro(String modelo_carro) {
         this.modelo_carro = modelo_carro;
-    }
-
-    public MotorModelo getMotor() {
-        return motor_asignado;
-    }
-
-    public void setMotor(MotorModelo motor) {
-        this.motor_asignado = motor;
     }
 
     public String validar_placa() {
@@ -77,8 +67,6 @@ public class CarroModelo {
     }
 
     public String obtener_info() {
-        String info_carro = "[CARRO] Placa: " + this.placa_carro + " | Marca: " + this.marca_carro + " | Modelo: " + this.modelo_carro;
-        String info_motor = (this.motor_asignado != null) ? " || " + this.motor_asignado.obtener_info() : " || [MOTOR] Sin Motor";
-        return info_carro + info_motor;
+        return "Placa: " + this.placa_carro + " | Marca: " + this.marca_carro + " | Modelo: " + this.modelo_carro;
     }
 }

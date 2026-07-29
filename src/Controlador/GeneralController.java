@@ -32,15 +32,18 @@ public class GeneralController {
                     gestionar_carros();
                     break;
                 case "2":
-                    gestionar_choferes();
+                    gestionar_motores();
                     break;
                 case "3":
-                    gestionar_pasajeros();
+                    gestionar_choferes();
                     break;
                 case "4":
-                    gestionar_viajes();
+                    gestionar_pasajeros();
                     break;
                 case "5":
+                    gestionar_viajes();
+                    break;
+                case "6":
                     this.vistaSistema.mostrar_mensaje("\nSaliendo del sistema... Hasta luego!");
                     salir = true;
                     break;
@@ -51,21 +54,33 @@ public class GeneralController {
     }
 
     private boolean esMatrizLlenaCarros() {
-        CarroModelo[][] matriz = this.apiModelo.getMatrizCarros();
+        String[][] matriz = this.apiModelo.getListaCarros();
         for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                if (matriz[i][j] == null) return false;
-            }
+            if (matriz[i][0] == null) return false;
         }
         return true;
     }
 
     private boolean esMatrizVaciaCarros() {
-        CarroModelo[][] matriz = this.apiModelo.getMatrizCarros();
+        String[][] matriz = this.apiModelo.getListaCarros();
         for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                if (matriz[i][j] != null) return false;
-            }
+            if (matriz[i][0] != null) return false;
+        }
+        return true;
+    }
+
+    private boolean esMatrizLlenaMotos() {
+        String[][] matriz = this.apiModelo.getListaMotores();
+        for (int i = 0; i < 3; i++) {
+            if (matriz[i][0] == null) return false;
+        }
+        return true;
+    }
+
+    private boolean esMatrizVaciaMotos() {
+        String[][] matriz = this.apiModelo.getListaMotores();
+        for (int i = 0; i < 3; i++) {
+            if (matriz[i][0] != null) return false;
         }
         return true;
     }
@@ -94,54 +109,109 @@ public class GeneralController {
     private void gestionar_carros() {
         boolean volver = false;
         while (!volver) {
-            String op = this.vistaSistema.tomar_opcion_submenu("Vehiculos");
+            String op = this.vistaSistema.tomar_opcion_submenu("Carros");
             if (op.equals("1")) {
                 if (esMatrizLlenaCarros()) {
-                    this.vistaSistema.mostrar_mensaje("Error: Limite maximo alcanzado. No hay espacio para mas vehiculos.");
+                    this.vistaSistema.mostrar_mensaje("Error: Limite maximo alcanzado. No hay espacio para mas carros.");
                     continue;
                 }
-                CarroModelo carro = procesar_carro();
+                String[] carro = procesar_carro();
                 if (this.apiModelo.crearCarro(carro)) {
-                    this.vistaSistema.mostrar_mensaje("Vehiculo guardado exitosamente.");
+                    this.vistaSistema.mostrar_mensaje("Carro guardado exitosamente.");
                 }
             } else if (op.equals("2") || op.equals("3") || op.equals("4")) {
                 if (esMatrizVaciaCarros()) {
-                    this.vistaSistema.mostrar_mensaje("La lista de Vehiculos esta vacia.");
+                    this.vistaSistema.mostrar_mensaje("La lista de Carros esta vacia.");
                     continue;
                 }
                 
                 if (op.equals("2")) {
-                    this.vistaSistema.mostrar_mensaje("\n--- LISTA DE VEHICULOS ---");
-                    CarroModelo[][] matriz = this.apiModelo.getMatrizCarros();
+                    this.vistaSistema.mostrar_mensaje("\n--- LISTA DE CARROS ---");
+                    String[][] matriz = this.apiModelo.getListaCarros();
                     for (int i = 0; i < 3; i++) {
-                        for (int j = 0; j < 3; j++) {
-                            if (matriz[i][j] != null) {
-                                this.vistaSistema.mostrar_mensaje(matriz[i][j].obtener_info());
-                            }
+                        if (matriz[i][0] != null) {
+                            CarroModelo tempCarro = new CarroModelo(matriz[i][0], matriz[i][1], matriz[i][2]);
+                            this.vistaSistema.mostrar_mensaje(tempCarro.obtener_info());
                         }
                     }
                 } else if (op.equals("3")) {
-                    this.vistaSistema.mostrar_mensaje("\n--- MODIFICAR VEHICULO ---");
+                    this.vistaSistema.mostrar_mensaje("\n--- MODIFICAR CARRO ---");
                     String placa = this.vistaCarro.tomar_placa();
                     if (this.apiModelo.leerCarro(placa) != null) {
-                        CarroModelo nuevo = modificar_carro(placa);
+                        String[] nuevo = modificar_carro(placa);
                         this.apiModelo.actualizarCarro(placa, nuevo);
-                        this.vistaSistema.mostrar_mensaje("Vehiculo modificado exitosamente.");
+                        this.vistaSistema.mostrar_mensaje("Carro modificado exitosamente.");
                     } else {
-                        this.vistaSistema.mostrar_mensaje("Error: Vehiculo no encontrado.");
+                        this.vistaSistema.mostrar_mensaje("Error: Carro no encontrado.");
                     }
                 } else if (op.equals("4")) {
-                    this.vistaSistema.mostrar_mensaje("\n--- ELIMINAR VEHICULO ---");
+                    this.vistaSistema.mostrar_mensaje("\n--- ELIMINAR CARRO ---");
                     String placa = this.vistaCarro.tomar_placa();
                     if (this.apiModelo.leerCarro(placa) != null) {
                         if (estaEnUsoCarro(placa)) {
-                            this.vistaSistema.mostrar_mensaje("Error: No se puede eliminar. El vehiculo esta asociado a una ficha de viaje.");
+                            this.vistaSistema.mostrar_mensaje("Error: No se puede eliminar. El carro esta asociado a una ficha de viaje.");
                         } else {
                             this.apiModelo.eliminarCarro(placa);
-                            this.vistaSistema.mostrar_mensaje("Vehiculo eliminado exitosamente.");
+                            this.vistaSistema.mostrar_mensaje("Carro eliminado exitosamente.");
                         }
                     } else {
-                        this.vistaSistema.mostrar_mensaje("Error: Vehiculo no encontrado.");
+                        this.vistaSistema.mostrar_mensaje("Error: Carro no encontrado.");
+                    }
+                }
+            } else if (op.equals("5")) {
+                volver = true;
+            } else {
+                this.vistaSistema.mostrar_mensaje("Opcion invalida.");
+            }
+        }
+    }
+
+    private void gestionar_motores() {
+        boolean volver = false;
+        while (!volver) {
+            String op = this.vistaSistema.tomar_opcion_submenu("Motores");
+            if (op.equals("1")) {
+                if (esMatrizLlenaMotos()) {
+                    this.vistaSistema.mostrar_mensaje("Error: Limite maximo alcanzado. No hay espacio para mas motores.");
+                    continue;
+                }
+                String[] motor = procesar_motor();
+                if (this.apiModelo.crearMotor(motor)) {
+                    this.vistaSistema.mostrar_mensaje("Motor guardado exitosamente.");
+                }
+            } else if (op.equals("2") || op.equals("3") || op.equals("4")) {
+                if (esMatrizVaciaMotos()) {
+                    this.vistaSistema.mostrar_mensaje("La lista de Motores esta vacia.");
+                    continue;
+                }
+                
+                if (op.equals("2")) {
+                    this.vistaSistema.mostrar_mensaje("\n--- LISTA DE MOTORES ---");
+                    String[][] matriz = this.apiModelo.getListaMotores();
+                    for (int i = 0; i < 3; i++) {
+                        if (matriz[i][0] != null) {
+                            MotorModelo tempMotor = new MotorModelo(matriz[i][0], matriz[i][1], matriz[i][2]);
+                            this.vistaSistema.mostrar_mensaje(tempMotor.obtener_info());
+                        }
+                    }
+                } else if (op.equals("3")) {
+                    this.vistaSistema.mostrar_mensaje("\n--- MODIFICAR MOTOR ---");
+                    String serie = this.vistaMotor.tomar_numero_serie();
+                    if (this.apiModelo.leerMotor(serie) != null) {
+                        String[] nuevo = modificar_motor(serie);
+                        this.apiModelo.actualizarMotor(serie, nuevo);
+                        this.vistaSistema.mostrar_mensaje("Motor modificado exitosamente.");
+                    } else {
+                        this.vistaSistema.mostrar_mensaje("Error: Motor no encontrado.");
+                    }
+                } else if (op.equals("4")) {
+                    this.vistaSistema.mostrar_mensaje("\n--- ELIMINAR MOTOR ---");
+                    String serie = this.vistaMotor.tomar_numero_serie();
+                    if (this.apiModelo.leerMotor(serie) != null) {
+                        this.apiModelo.eliminarMotor(serie);
+                        this.vistaSistema.mostrar_mensaje("Motor eliminado exitosamente.");
+                    } else {
+                        this.vistaSistema.mostrar_mensaje("Error: Motor no encontrado.");
                     }
                 }
             } else if (op.equals("5")) {
@@ -292,19 +362,23 @@ public class GeneralController {
     private void generar_viaje() {
         this.vistaSistema.mostrar_mensaje("\n=== GENERAR FICHA DE VIAJE ===");
 
-        this.vistaSistema.mostrar_mensaje("Ingrese la placa del Vehiculo a usar:");
+        this.vistaSistema.mostrar_mensaje("Ingrese la placa del Carro a usar:");
         String placa = this.vistaCarro.tomar_placa();
-        CarroModelo carro = this.apiModelo.leerCarro(placa);
-        if (carro == null) {
-            this.vistaSistema.mostrar_mensaje("Error: Vehiculo no encontrado.");
+        String[] carroData = this.apiModelo.leerCarro(placa);
+        if (carroData == null) {
+            this.vistaSistema.mostrar_mensaje("Error: Carro no encontrado.");
             return;
         }
+        CarroModelo carro = new CarroModelo(carroData[0], carroData[1], carroData[2]);
 
-        MotorModelo motor = carro.getMotor();
-        if (motor == null) {
-            this.vistaSistema.mostrar_mensaje("Error: El vehiculo seleccionado no tiene motor asociado.");
+        this.vistaSistema.mostrar_mensaje("Ingrese la serie del Motor a usar:");
+        String serie = this.vistaMotor.tomar_numero_serie();
+        String[] motorData = this.apiModelo.leerMotor(serie);
+        if (motorData == null) {
+            this.vistaSistema.mostrar_mensaje("Error: Motor no encontrado.");
             return;
         }
+        MotorModelo motor = new MotorModelo(motorData[0], motorData[1], motorData[2]);
 
         this.vistaSistema.mostrar_mensaje("Ingrese la cedula del Chofer:");
         String cedulaChofer = this.vistaChofer.tomar_cedula();
@@ -322,13 +396,10 @@ public class GeneralController {
             return;
         }
 
-        FichaViajeModelo ficha = new FichaViajeModelo(carro, chofer, pasajero);
+        FichaViajeModelo ficha = new FichaViajeModelo(carro, motor, chofer, pasajero);
         if (this.apiModelo.validar_registro(ficha)) {
             this.apiModelo.crearViaje(ficha);
-            this.vistaSistema.mostrar_mensaje("Exito: Viaje registrado correctamente en la base de datos.");
-            this.vistaSistema.mostrar_mensaje("\n--- RESUMEN FINAL DEL VIAJE ---");
-            this.vistaSistema.mostrar_mensaje(ficha.obtener_info());
-            this.vistaSistema.mostrar_mensaje("-------------------------------");
+            this.vistaSistema.mostrar_mensaje("Viaje registrado correctamente en la base de datos.");
         } else {
             this.vistaSistema.mostrar_mensaje("Error: No se pudo registrar el viaje. Faltan datos criticos.");
         }
@@ -344,14 +415,13 @@ public class GeneralController {
         }
     }
 
-    private CarroModelo procesar_carro() {
-        this.vistaSistema.mostrar_mensaje("\n--- Datos del Vehiculo ---");
+    private String[] procesar_carro() {
+        this.vistaSistema.mostrar_mensaje("\n--- Datos del Carro ---");
         String placaCarro = this.vistaCarro.tomar_placa();
         String marcaCarro = this.vistaCarro.tomar_marca();
         String modeloCarro = this.vistaCarro.tomar_modelo();
         
-        MotorModelo motorAsignado = procesar_motor();
-        CarroModelo objCarro = new CarroModelo(placaCarro, marcaCarro, modeloCarro, motorAsignado);
+        CarroModelo objCarro = new CarroModelo(placaCarro, marcaCarro, modeloCarro);
 
         while (!objCarro.validar_placa().equals("OK") || !objCarro.validar_marca().equals("OK") || !objCarro.validar_modelo().equals("OK")) {
             this.vistaCarro.mostrar_mensaje("Error: Datos del carro incompletos o invalidos.");
@@ -368,16 +438,15 @@ public class GeneralController {
                 objCarro.setModelo_carro(this.vistaCarro.tomar_modelo());
             }
         }
-        return objCarro;
+        return new String[]{objCarro.getPlaca_carro(), objCarro.getMarca_carro(), objCarro.getModelo_carro()};
     }
 
-    private CarroModelo modificar_carro(String placa) {
-        this.vistaSistema.mostrar_mensaje("\n--- Modificando Vehiculo (Placa Inmutable: " + placa + ") ---");
+    private String[] modificar_carro(String placa) {
+        this.vistaSistema.mostrar_mensaje("\n--- Modificando Carro (Placa Inmutable: " + placa + ") ---");
         String marcaCarro = this.vistaCarro.tomar_marca();
         String modeloCarro = this.vistaCarro.tomar_modelo();
         
-        MotorModelo motorModificado = modificar_motor(this.apiModelo.leerCarro(placa).getMotor().getNumero_serie_motor());
-        CarroModelo objCarro = new CarroModelo(placa, marcaCarro, modeloCarro, motorModificado);
+        CarroModelo objCarro = new CarroModelo(placa, marcaCarro, modeloCarro);
 
         while (!objCarro.validar_marca().equals("OK") || !objCarro.validar_modelo().equals("OK")) {
             this.vistaCarro.mostrar_mensaje("Error: Datos del carro incompletos o invalidos.");
@@ -390,11 +459,11 @@ public class GeneralController {
                 objCarro.setModelo_carro(this.vistaCarro.tomar_modelo());
             }
         }
-        return objCarro;
+        return new String[]{objCarro.getPlaca_carro(), objCarro.getMarca_carro(), objCarro.getModelo_carro()};
     }
 
-    private MotorModelo procesar_motor() {
-        this.vistaSistema.mostrar_mensaje("\n--- Datos del Motor Asignado ---");
+    private String[] procesar_motor() {
+        this.vistaSistema.mostrar_mensaje("\n--- Datos del Motor ---");
         String serieMotor = this.vistaMotor.tomar_numero_serie();
         String tipoMotor = this.vistaMotor.tomar_tipo();
         String cilindraje = this.vistaMotor.tomar_cilindraje();
@@ -415,10 +484,10 @@ public class GeneralController {
                 objMotor.setCilindraje(this.vistaMotor.tomar_cilindraje());
             }
         }
-        return objMotor;
+        return new String[]{objMotor.getNumero_serie_motor(), objMotor.getTipo_motor(), objMotor.getCilindraje()};
     }
 
-    private MotorModelo modificar_motor(String serie) {
+    private String[] modificar_motor(String serie) {
         this.vistaSistema.mostrar_mensaje("\n--- Modificando Motor (Serie Inmutable: " + serie + ") ---");
         String tipoMotor = this.vistaMotor.tomar_tipo();
         String cilindraje = this.vistaMotor.tomar_cilindraje();
@@ -435,7 +504,7 @@ public class GeneralController {
                 objMotor.setCilindraje(this.vistaMotor.tomar_cilindraje());
             }
         }
-        return objMotor;
+        return new String[]{objMotor.getNumero_serie_motor(), objMotor.getTipo_motor(), objMotor.getCilindraje()};
     }
 
     private ChoferModelo procesar_chofer() {

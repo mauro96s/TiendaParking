@@ -8,7 +8,12 @@ public class ApiModelo {
     String clave = "";
     String root = "";
     String url = "";
-    CarroModelo[][] matrizCarros;
+    
+    // listas estaticas
+    String[][] listaCarros;
+    String[][] listaMotor;
+    
+    // listas dinamicas
     List<ChoferModelo> listaChoferes;
     List<PasajeroModelo> listaPasajeros;
     List<FichaViajeModelo> listaViajes;
@@ -17,7 +22,8 @@ public class ApiModelo {
         this.clave = clave;
         this.root = usuario;
         this.url = url;
-        this.matrizCarros = new CarroModelo[3][3];
+        this.listaCarros = new String[3][3];
+        this.listaMotor = new String[3][3];
         this.listaChoferes = new ArrayList<>();
         this.listaPasajeros = new ArrayList<>();
         this.listaViajes = new ArrayList<>();
@@ -60,44 +66,38 @@ public class ApiModelo {
     }
 
     public boolean validar_registro(FichaViajeModelo ficha) {
-        if (ficha != null && ficha.getCarro() != null && ficha.getCarro().getMotor() != null &&
+        if (ficha != null && ficha.getCarro() != null && ficha.getMotor() != null &&
                 ficha.getChofer() != null && ficha.getPasajero() != null) {
             return true;
         }
         return false;
     }
 
-    // CRUD para Vehiculo (Carro + Motor) (Matriz 3x3)
-    public boolean crearCarro(CarroModelo carro) {
+    // CRUD para Vehiculo (Carro) (Matriz 3x3 de Strings)
+    public boolean crearCarro(String[] carroData) {
         for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                if (matrizCarros[i][j] == null) {
-                    matrizCarros[i][j] = carro;
-                    return true;
-                }
+            if (listaCarros[i][0] == null) {
+                listaCarros[i] = carroData;
+                return true;
             }
         }
         return false;
     }
 
-    public CarroModelo leerCarro(String placa) {
+    public String[] leerCarro(String placa) {
         for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                if (matrizCarros[i][j] != null && matrizCarros[i][j].getPlaca_carro().equals(placa)) {
-                    return matrizCarros[i][j];
-                }
+            if (listaCarros[i][0] != null && listaCarros[i][0].equals(placa)) {
+                return listaCarros[i];
             }
         }
         return null;
     }
 
-    public boolean actualizarCarro(String placa, CarroModelo nuevoCarro) {
+    public boolean actualizarCarro(String placa, String[] nuevoCarroData) {
         for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                if (matrizCarros[i][j] != null && matrizCarros[i][j].getPlaca_carro().equals(placa)) {
-                    matrizCarros[i][j] = nuevoCarro;
-                    return true;
-                }
+            if (listaCarros[i][0] != null && listaCarros[i][0].equals(placa)) {
+                listaCarros[i] = nuevoCarroData;
+                return true;
             }
         }
         return false;
@@ -105,18 +105,60 @@ public class ApiModelo {
 
     public boolean eliminarCarro(String placa) {
         for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                if (matrizCarros[i][j] != null && matrizCarros[i][j].getPlaca_carro().equals(placa)) {
-                    matrizCarros[i][j] = null;
-                    return true;
-                }
+            if (listaCarros[i][0] != null && listaCarros[i][0].equals(placa)) {
+                listaCarros[i] = new String[3]; // Vaciar la fila
+                return true;
             }
         }
         return false;
     }
     
-    public CarroModelo[][] getMatrizCarros() {
-        return matrizCarros;
+    public String[][] getListaCarros() {
+        return listaCarros;
+    }
+
+    // CRUD para Moto (Matriz 3x3 de Strings)
+    public boolean crearMotor(String[] motoData) {
+        for (int i = 0; i < 3; i++) {
+            if (listaMotor[i][0] == null) {
+                listaMotor[i] = motoData;
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public String[] leerMotor(String placa) {
+        for (int i = 0; i < 3; i++) {
+            if (listaMotor[i][0] != null && listaMotor[i][0].equals(placa)) {
+                return listaMotor[i];
+            }
+        }
+        return null;
+    }
+
+    public boolean actualizarMotor(String placa, String[] nuevoMotoData) {
+        for (int i = 0; i < 3; i++) {
+            if (listaMotor[i][0] != null && listaMotor[i][0].equals(placa)) {
+                listaMotor[i] = nuevoMotoData;
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean eliminarMotor(String placa) {
+        for (int i = 0; i < 3; i++) {
+            if (listaMotor[i][0] != null && listaMotor[i][0].equals(placa)) {
+                listaMotor[i] = new String[3]; // Vaciar la fila
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public String[][] getListaMotores() {
+        return listaMotor;
     }
 
     // CRUD para Chofer (List Dinamica)
