@@ -1,72 +1,72 @@
-package Modelo;
+package modelo;
 
 public class CarroModelo {
 
-    String placa_carro = "";
-    String marca_carro = "";
-    String modelo_carro = "";
+    private String placaCarro = "";
+    private String marcaCarro = "";
+    private String modeloCarro = "";
 
-    public CarroModelo(String dato_placa, String dato_marca, String dato_modelo) {
-        this.placa_carro = dato_placa;
-        this.marca_carro = dato_marca;
-        this.modelo_carro = dato_modelo;
+    public CarroModelo(String datoPlaca, String datoMarca, String datoModelo) {
+        this.placaCarro = datoPlaca;
+        this.marcaCarro = datoMarca;
+        this.modeloCarro = datoModelo;
     }
 
-    public String getPlaca_carro() {
-        return placa_carro;
+    public String getPlacaCarro() {
+        return placaCarro;
     }
 
-    public void setPlaca_carro(String placa_carro) {
-        this.placa_carro = placa_carro;
+    public void setPlacaCarro(String placaCarro) {
+        this.placaCarro = placaCarro;
     }
 
-    public String getMarca_carro() {
-        return marca_carro;
+    public String getMarcaCarro() {
+        return marcaCarro;
     }
 
-    public void setMarca_carro(String marca_carro) {
-        this.marca_carro = marca_carro;
+    public void setMarcaCarro(String marcaCarro) {
+        this.marcaCarro = marcaCarro;
     }
 
-    public String getModelo_carro() {
-        return modelo_carro;
+    public String getModeloCarro() {
+        return modeloCarro;
     }
 
-    public void setModelo_carro(String modelo_carro) {
-        this.modelo_carro = modelo_carro;
+    public void setModeloCarro(String modeloCarro) {
+        this.modeloCarro = modeloCarro;
     }
 
-    public String validar_placa() {
-        if (this.placa_carro == null || this.placa_carro.trim().isEmpty()) {
+    public String validarPlaca() {
+        if (this.placaCarro == null || this.placaCarro.trim().isEmpty()) {
             return "-> La placa no puede estar vacia.";
         }
-        if (!this.placa_carro.matches("[A-Z]{3}-[0-9]{3,4}")) {
+        if (!this.placaCarro.matches("[A-Z]{3}-[0-9]{3,4}")) {
             return "-> La placa debe tener el formato (Ej: ABC-1234).";
         }
         return "OK";
     }
 
-    public String validar_marca() {
-        if (this.marca_carro == null || this.marca_carro.trim().isEmpty()) {
+    public String validarMarca() {
+        if (this.marcaCarro == null || this.marcaCarro.trim().isEmpty()) {
             return "-> La marca no puede estar vacia.";
         }
-        if (this.marca_carro.trim().length() < 3) {
+        if (this.marcaCarro.trim().length() < 3) {
             return "-> La marca debe tener al menos 3 caracteres.";
         }
         return "OK";
     }
 
-    public String validar_modelo() {
-        if (this.modelo_carro == null || this.modelo_carro.trim().isEmpty()) {
+    public String validarModelo() {
+        if (this.modeloCarro == null || this.modeloCarro.trim().isEmpty()) {
             return "-> El modelo no puede estar vacio.";
         }
-        if (this.modelo_carro.trim().length() < 2) {
+        if (this.modeloCarro.trim().length() < 2) {
             return "-> El modelo debe tener al menos 2 caracteres.";
         }
         return "OK";
     }
 
-    public String obtener_info() {
-        return "Placa: " + this.placa_carro + " | Marca: " + this.marca_carro + " | Modelo: " + this.modelo_carro;
+    public String obtenerInfo() {
+        return "Placa: " + this.placaCarro + " | Marca: " + this.marcaCarro + " | Modelo: " + this.modeloCarro;
     }
 }

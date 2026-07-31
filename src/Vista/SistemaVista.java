@@ -1,21 +1,21 @@
-package Vista;
+package vista;
 
 import java.util.Scanner;
 
 public class SistemaVista {
 
-    private Scanner obj_teclado = new Scanner(System.in);
+    private Scanner objTeclado = new Scanner(System.in);
 
-    // Esta clase tiene la ÚNICA responsabilidad de mostrar mensajes generales del
+    // Esta clase tiene la ÃƒÅ¡NICA responsabilidad de mostrar mensajes generales del
     // sistema
-    // (títulos, menús, confirmaciones globales) que no pertenecen a una entidad
-    // específica.
+    // (tÃƒÂ­tulos, menÃƒÂºs, confirmaciones globales) que no pertenecen a una entidad
+    // especÃƒÂ­fica.
 
-    public void mostrar_mensaje(String mensaje) {
+    public void mostrarMensaje(String mensaje) {
         System.out.println(mensaje);
     }
 
-    public String tomar_opcion_menu() {
+    public String tomarOpcionMenu() {
         System.out.println("\n=================================");
         System.out.println("      SISTEMA TIENDA PARKING       ");
         System.out.println("=================================");
@@ -26,10 +26,10 @@ public class SistemaVista {
         System.out.println("5. Gestionar Fichas de Viaje");
         System.out.println("6. Salir del sistema");
         System.out.print("Seleccione una opcion: ");
-        return obj_teclado.nextLine();
+        return objTeclado.nextLine();
     }
 
-    public String tomar_opcion_submenu(String entidad) {
+    public String tomarOpcionSubmenu(String entidad) {
         System.out.println("\n--- GESTION DE " + entidad.toUpperCase() + " ---");
         System.out.println("1. Registrar nuevo");
         System.out.println("2. Ver todos");
@@ -37,6 +37,6 @@ public class SistemaVista {
         System.out.println("4. Eliminar");
         System.out.println("5. Regresar al menu principal");
         System.out.print("Seleccione una opcion: ");
-        return obj_teclado.nextLine();
+        return objTeclado.nextLine();
     }
 }

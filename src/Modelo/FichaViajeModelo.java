@@ -1,4 +1,4 @@
-package Modelo;
+package modelo;
 
 public class FichaViajeModelo {
 
@@ -46,10 +46,10 @@ public class FichaViajeModelo {
         this.pasajero = pasajero;
     }
 
-    public String obtener_info() {
-        return "[CARRO] " + this.carro.obtener_info()
-                + "\n[MOTOR] " + this.motor.obtener_info()
-                + "\n[CHOFER] " + this.chofer.obtener_info() 
-                + "\n[PASAJERO] "+ this.pasajero.obtener_info();
+    public String obtenerInfo() {
+        return "[CARRO] " + this.carro.obtenerInfo()
+                + "\n[MOTOR] " + this.motor.obtenerInfo()
+                + "\n[CHOFER] " + this.chofer.obtenerInfo() 
+                + "\n[PASAJERO] "+ this.pasajero.obtenerInfo();
     }
 }

@@ -1,10 +1,10 @@
-package tiendaparking;
+package main;
 
-import Controlador.GeneralController;
-import Modelo.ApiModelo;
-import Vista.*;
+import controlador.PrincipalControlador;
+import modelo.ApiModelo;
+import vista.*;
 
-public class TiendaParking {
+public class Main {
 
     public static void main(String[] args) {
         
@@ -14,13 +14,14 @@ public class TiendaParking {
         CarroVista vistaCarro = new CarroVista();
         MotorVista vistaMotor = new MotorVista();
         PasajeroVista vistaPasajero = new PasajeroVista();
+        FichaViajeVista vistaViaje = new FichaViajeVista();
         
         // Instanciar Modelo DB
         ApiModelo api = new ApiModelo("http://api.com", "root", "1234");
         
         // Inyectar dependencias al controlador
-        GeneralController obj_controlador = new GeneralController(vistaSistema, vistaChofer, vistaCarro, vistaMotor, vistaPasajero, api);
-        obj_controlador.procesar_datos();
+        PrincipalControlador objControlador = new PrincipalControlador(vistaSistema, vistaChofer, vistaCarro, vistaMotor, vistaPasajero, vistaViaje, api);
+        objControlador.procesarDatos();
     }
 
 }

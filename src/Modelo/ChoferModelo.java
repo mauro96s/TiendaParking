@@ -1,42 +1,42 @@
-package Modelo;
+package modelo;
 
 public class ChoferModelo {
 
     // inicializamos variables
-    String cedula_chofer = "";
-    String nombre_chofer = "";
-    String licencia_chofer = "";
+    private String cedulaChofer = "";
+    private String nombreChofer = "";
+    private String licenciaChofer = "";
 
     // constructor
-    public ChoferModelo(String dato_cedula, String dato_nombre, String dato_licencia) {
-        this.cedula_chofer = dato_cedula;
-        this.nombre_chofer = dato_nombre;
-        this.licencia_chofer = dato_licencia;
+    public ChoferModelo(String datoCedula, String datoNombre, String datoLicencia) {
+        this.cedulaChofer = datoCedula;
+        this.nombreChofer = datoNombre;
+        this.licenciaChofer = datoLicencia;
     }
 
     // getters y setters
-    public String getNombre_chofer() {
-        return nombre_chofer;
+    public String getNombreChofer() {
+        return nombreChofer;
     }
 
-    public void setNombre_chofer(String nombre_chofer) {
-        this.nombre_chofer = nombre_chofer;
+    public void setNombreChofer(String nombreChofer) {
+        this.nombreChofer = nombreChofer;
     }
 
-    public String getLicencia_chofer() {
-        return licencia_chofer;
+    public String getLicenciaChofer() {
+        return licenciaChofer;
     }
 
-    public void setLicencia_chofer(String licencia_chofer) {
-        this.licencia_chofer = licencia_chofer;
+    public void setLicenciaChofer(String licenciaChofer) {
+        this.licenciaChofer = licenciaChofer;
     }
 
-    public String getCedula_chofer() {
-        return cedula_chofer;
+    public String getCedulaChofer() {
+        return cedulaChofer;
     }
 
-    public void setCedula_chofer(String cedula_chofer) {
-        this.cedula_chofer = cedula_chofer;
+    public void setCedulaChofer(String cedulaChofer) {
+        this.cedulaChofer = cedulaChofer;
     }
 
     // metodos de responsabilidad
@@ -46,40 +46,40 @@ public class ChoferModelo {
     // 2. validar licencia
     // 3. validar nombre y apellidos
 
-    public String validar_nombre() {
-        if (this.nombre_chofer == null || this.nombre_chofer.trim().isEmpty()) {
+    public String validarNombre() {
+        if (this.nombreChofer == null || this.nombreChofer.trim().isEmpty()) {
             return "-> El nombre no puede estar vacio.";
         }
-        if (!this.nombre_chofer.matches("[a-zA-Z áéíóúÁÉÍÓÚñÑ]+")) {
+        if (!this.nombreChofer.matches("[a-zA-Z áéíóúÁÉÍÓÚñÑ]+")) {
             return "-> El nombre solo puede contener letras y espacios.";
         }
         return "OK";
     }
 
-    public String validar_licencia() {
-        if (this.licencia_chofer == null || this.licencia_chofer.trim().isEmpty()) {
+    public String validarLicencia() {
+        if (this.licenciaChofer == null || this.licenciaChofer.trim().isEmpty()) {
             return "-> La licencia no puede estar vacia.";
         }
-        if (this.licencia_chofer.length() < 3) {
+        if (this.licenciaChofer.length() < 3) {
             return "-> La licencia debe tener al menos 3 caracteres.";
         }
         return "OK";
     }
 
-    public String validar_cedula() {
-        if (this.cedula_chofer == null || this.cedula_chofer.trim().isEmpty()) {
+    public String validarCedula() {
+        if (this.cedulaChofer == null || this.cedulaChofer.trim().isEmpty()) {
             return "-> La cedula no puede estar vacia.";
         }
-        if (!this.cedula_chofer.matches("[0-9]+")) {
+        if (!this.cedulaChofer.matches("[0-9]+")) {
             return "-> La cedula solo debe contener numeros.";
         }
-        if (this.cedula_chofer.length() < 8 || this.cedula_chofer.length() > 10) {
+        if (this.cedulaChofer.length() < 8 || this.cedulaChofer.length() > 10) {
             return "-> La cedula debe tener entre 8 y 10 digitos.";
         }
         return "OK";
     }
 
-    public String obtener_info() {
-        return "CI: " + this.cedula_chofer + " | Nombre: " + this.nombre_chofer + " | Licencia: " + this.licencia_chofer;
+    public String obtenerInfo() {
+        return "CI: " + this.cedulaChofer + " | Nombre: " + this.nombreChofer + " | Licencia: " + this.licenciaChofer;
     }
 }

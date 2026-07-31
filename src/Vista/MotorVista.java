@@ -1,30 +1,50 @@
-package Vista;
+package vista;
 
 import java.util.Scanner;
 
 public class MotorVista {
     
-    private Scanner obj_teclado = new Scanner(System.in);
+    private Scanner objTeclado = new Scanner(System.in);
 
-    public String tomar_numero_serie(){
+    public String tomarNumeroSerie(){
         System.out.print("Serie: ");
-        String numero = obj_teclado.nextLine();
+        String numero = objTeclado.nextLine();
         return numero;
     }
     
-    public String tomar_tipo(){
+    public String tomarTipo(){
         System.out.print("Tipo: ");
-        String tipo = obj_teclado.nextLine();
+        String tipo = objTeclado.nextLine();
         return tipo;
     }
 
-    public String tomar_cilindraje(){
+    public String tomarCilindraje(){
         System.out.print("Cilindraje: ");
-        String cilindraje = obj_teclado.nextLine();
+        String cilindraje = objTeclado.nextLine();
         return cilindraje;
     }
 
-    public void mostrar_mensaje(String mensaje) {
+    public void mostrarMensaje(String mensaje) {
         System.out.println(mensaje);
+    }
+
+    public void mostrarEncabezadoRegistro() {
+        System.out.println("\n--- Datos del Motor ---");
+    }
+
+    public void mostrarEncabezadoLista() {
+        System.out.println("\n--- LISTA DE MOTORES ---");
+    }
+
+    public void mostrarEncabezadoModificar() {
+        System.out.println("\n--- MODIFICAR MOTOR ---");
+    }
+
+    public void mostrarEncabezadoActualizando(String serie) {
+        System.out.println("\n--- Modificando Motor (Serie Inmutable: " + serie + ") ---");
+    }
+
+    public void mostrarEncabezadoEliminar() {
+        System.out.println("\n--- ELIMINAR MOTOR ---");
     }
 }

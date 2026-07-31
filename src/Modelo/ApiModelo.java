@@ -1,22 +1,22 @@
-package Modelo;
+package modelo;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ApiModelo {
 
-    String clave = "";
-    String root = "";
-    String url = "";
+    private String clave = "";
+    private String root = "";
+    private String url = "";
     
     // listas estaticas
-    String[][] listaCarros;
-    String[][] listaMotor;
+    private String[][] listaCarros;
+    private String[][] listaMotor;
     
     // listas dinamicas
-    List<ChoferModelo> listaChoferes;
-    List<PasajeroModelo> listaPasajeros;
-    List<FichaViajeModelo> listaViajes;
+    private List<ChoferModelo> listaChoferes;
+    private List<PasajeroModelo> listaPasajeros;
+    private List<FichaViajeModelo> listaViajes;
 
     public ApiModelo(String url, String usuario, String clave) {
         this.clave = clave;
@@ -65,7 +65,7 @@ public class ApiModelo {
         return "Desconexion realizada...";
     }
 
-    public boolean validar_registro(FichaViajeModelo ficha) {
+    public boolean validarRegistro(FichaViajeModelo ficha) {
         if (ficha != null && ficha.getCarro() != null && ficha.getMotor() != null &&
                 ficha.getChofer() != null && ficha.getPasajero() != null) {
             return true;
@@ -168,7 +168,7 @@ public class ApiModelo {
 
     public ChoferModelo leerChofer(String cedula) {
         for (ChoferModelo chofer : listaChoferes) {
-            if (chofer.getCedula_chofer().equals(cedula)) {
+            if (chofer.getCedulaChofer().equals(cedula)) {
                 return chofer;
             }
         }
@@ -177,7 +177,7 @@ public class ApiModelo {
 
     public boolean actualizarChofer(String cedula, ChoferModelo nuevoChofer) {
         for (int i = 0; i < listaChoferes.size(); i++) {
-            if (listaChoferes.get(i).getCedula_chofer().equals(cedula)) {
+            if (listaChoferes.get(i).getCedulaChofer().equals(cedula)) {
                 listaChoferes.set(i, nuevoChofer);
                 return true;
             }
@@ -186,7 +186,7 @@ public class ApiModelo {
     }
 
     public boolean eliminarChofer(String cedula) {
-        return listaChoferes.removeIf(chofer -> chofer.getCedula_chofer().equals(cedula));
+        return listaChoferes.removeIf(chofer -> chofer.getCedulaChofer().equals(cedula));
     }
     
     public List<ChoferModelo> getListaChoferes() {
@@ -200,7 +200,7 @@ public class ApiModelo {
 
     public PasajeroModelo leerPasajero(String cedula) {
         for (PasajeroModelo pasajero : listaPasajeros) {
-            if (pasajero.getCedula_pasajero().equals(cedula)) {
+            if (pasajero.getCedulaPasajero().equals(cedula)) {
                 return pasajero;
             }
         }
@@ -209,7 +209,7 @@ public class ApiModelo {
 
     public boolean actualizarPasajero(String cedula, PasajeroModelo nuevoPasajero) {
         for (int i = 0; i < listaPasajeros.size(); i++) {
-            if (listaPasajeros.get(i).getCedula_pasajero().equals(cedula)) {
+            if (listaPasajeros.get(i).getCedulaPasajero().equals(cedula)) {
                 listaPasajeros.set(i, nuevoPasajero);
                 return true;
             }
@@ -218,7 +218,7 @@ public class ApiModelo {
     }
 
     public boolean eliminarPasajero(String cedula) {
-        return listaPasajeros.removeIf(pasajero -> pasajero.getCedula_pasajero().equals(cedula));
+        return listaPasajeros.removeIf(pasajero -> pasajero.getCedulaPasajero().equals(cedula));
     }
     
     public List<PasajeroModelo> getListaPasajeros() {
